@@ -8,10 +8,10 @@ return [
     'debug' => (bool) env('APP_DEBUG', false),
     'url' => env('APP_URL', 'http://localhost'),
     'asset_url' => env('ASSET_URL'),
-    'timezone' => 'UTC',
-    'locale' => 'en',
+    'timezone' => 'Europe/Moscow',
+    'locale' => 'ru',
     'fallback_locale' => 'en',
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ru_RU',
     'key' => env('APP_KEY'),
     'cipher' => 'AES-256-CBC',
     'maintenance' => [
