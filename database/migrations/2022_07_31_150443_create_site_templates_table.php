@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('cover');
             $table->json('download_links');
             $table->string('demo')->nullable();
+            $table->string('original_link');
         });
     }
 
