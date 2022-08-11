@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('title');
-            $table->text('description');
-            $table->string('image');
-            $table->json('links');
+            $table->string('cover');
+            $table->json('download_links');
+            $table->string('demo')->nullable();
         });
     }
 
