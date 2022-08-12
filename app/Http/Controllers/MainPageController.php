@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\SiteTemplate;
+
+use Illuminate\View\View;
 
 use function compact;
 use function view;
 
 class MainPageController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        return view('index', compact([
-
-        ]));
+        $siteTemplates = SiteTemplate::whereIsActive(true)
+            ->orderBy('created_at')
+            ->limit(10)
+            ->get();
+        return view(
+            'index',
+            compact([
+                'siteTemplates'
+            ])
+        );
     }
 }

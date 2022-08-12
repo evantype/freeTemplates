@@ -9,7 +9,7 @@ use Throwable;
 
 class ParseSiteTemplates extends Command
 {
-    protected $signature = 'parse:site_templates {page=1} {order=asc}';
+    protected $signature = 'parse:site_templates {page=1} {order=asc} {endpoint=10}';
 
     protected $description = 'parse site templates';
 
@@ -21,10 +21,16 @@ class ParseSiteTemplates extends Command
     public function handle(): int
     {
         try {
-            $this->parsingService->parseThemelock($this->argument('page'), $this->argument('order'));
+            $this->parsingService->parseThemelock(
+                $this->argument('page'),
+                $this->argument('order'),
+                $this->argument('endpoint')
+            );
         } catch (Throwable $e) {
             $this->error($e->getMessage());
         }
+
+        $this->info('Я всё');
 
         return 0;
     }
