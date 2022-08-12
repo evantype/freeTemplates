@@ -94,6 +94,7 @@ class ParsingService
                             'demo'           => $demo,
                             'original_link'  => $srcLink,
                             'download_links' => Json::encode($download_links),
+                            'is_active'         => true
                         ];
 
                         if (SiteTemplate::where([

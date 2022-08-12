@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperSiteTemplate
+ */
 class SiteTemplate extends Model
 {
     use HasFactory;
@@ -14,6 +17,7 @@ class SiteTemplate extends Model
         'download_links',
         'cover',
         'demo',
-        'original_link'
+        'original_link',
+        'is_active'
     ];
 }

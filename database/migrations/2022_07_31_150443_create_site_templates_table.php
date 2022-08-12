@@ -21,6 +21,7 @@ return new class extends Migration
             $table->json('download_links');
             $table->string('demo')->nullable();
             $table->string('original_link');
+            $table->boolean('is_active')->default(false);
         });
     }
 

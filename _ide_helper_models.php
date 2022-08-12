@@ -22,6 +22,7 @@ namespace App\Models{
  * @property mixed $download_links
  * @property string|null $demo
  * @property string $original_link
+ * @property bool|null $is_active
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate query()
@@ -30,6 +31,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereDemo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereDownloadLinks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereOriginalLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SiteTemplate whereUpdatedAt($value)
