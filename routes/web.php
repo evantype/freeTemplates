@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\MainPageController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [MainPageController::class, 'index'])->name('mainPageIndex');
 
 Auth::routes();
 
