@@ -13,6 +13,7 @@ class SiteTemplate extends Model
         'title',
         'download_links',
         'cover',
-        'demo'
+        'demo',
+        'original_link'
     ];
 }
