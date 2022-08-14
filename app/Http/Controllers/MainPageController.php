@@ -15,7 +15,7 @@ class MainPageController extends Controller
     {
         $siteTemplates = SiteTemplate::whereIsActive(true)
             ->orderBy('created_at')
-            ->limit(10)
+            ->limit(6)
             ->get();
         return view(
             'index',
