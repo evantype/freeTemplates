@@ -72,6 +72,13 @@ class ParsingService
                         $title = $templateBody->first('.entry-title')->text();
                         echo sprintf("Идет парсинг шаблона {$title}%s", PHP_EOL);
 
+                        $description = Str::of(
+                            Str::before(
+                                $templateBody->first('.single-content .single-body:not(.entry-content)')->text(),
+                                "Demo: "
+                            )
+                        )->trim();
+
                         $download_links = $this->getDownloadLinks($templateBody);
                         $sourceBody     = new Document($response->getBody()->__toString());
                         $cover          = $this->getCover($title, $srcLink, $sourceBody);
@@ -84,7 +91,8 @@ class ParsingService
                             'demo'           => $demo,
                             'original_link'  => $srcLink,
                             'download_links' => Json::encode($download_links),
-                            'is_active'      => true
+                            'is_active'      => true,
+                            'description'    => $description
                         ];
 
                         if (SiteTemplate::where([

@@ -18,6 +18,7 @@ class SiteTemplate extends Model
         'cover',
         'demo',
         'original_link',
-        'is_active'
+        'is_active',
+        'description'
     ];
 }
