@@ -85,6 +85,7 @@ class ParsingService
                         $demo           = "https://themeforest.net" . $sourceBody->first(
                                 'a.btn-icon.live-preview'
                             )->getAttribute('href');
+                        $slug           = Str::slug($title);
                         $arData         = [
                             'title'          => $title,
                             'cover'          => $cover,
@@ -92,7 +93,8 @@ class ParsingService
                             'original_link'  => $srcLink,
                             'download_links' => Json::encode($download_links),
                             'is_active'      => true,
-                            'description'    => $description
+                            'description'    => $description,
+                            'slug'           => $slug
                         ];
 
                         if (SiteTemplate::where([

@@ -19,6 +19,7 @@ class SiteTemplate extends Model
         'demo',
         'original_link',
         'is_active',
-        'description'
+        'description',
+        'slug'
     ];
 }
