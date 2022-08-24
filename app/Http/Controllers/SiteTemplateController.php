@@ -19,4 +19,11 @@ class SiteTemplateController extends Controller
 
         return view('site-templates', compact(['siteTemplates']));
     }
+
+    public function template($slug): View
+    {
+        $template = SiteTemplate::whereSlug($slug)->first();
+
+        return view('site-template', compact(['template']));
+    }
 }

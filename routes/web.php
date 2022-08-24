@@ -12,3 +12,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('site-templates', [SiteTemplateController::class, 'listTemplates'])->name('siteTemplates');
+
+Route::get('site-templates/{slug}', [SiteTemplateController::class, 'template'])->name('siteTemplate');

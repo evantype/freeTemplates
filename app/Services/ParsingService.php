@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\SiteTemplate;
+use Carbon\Carbon;
 use DiDom\Document;
 use Exception;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,7 @@ use Throwable;
 use function array_filter;
 use function array_map;
 use function dd;
+use function dump;
 use function explode;
 use function file_get_contents;
 use function implode;
@@ -82,11 +84,13 @@ class ParsingService
                         $download_links = $this->getDownloadLinks($templateBody);
                         $sourceBody     = new Document($response->getBody()->__toString());
                         $cover          = $this->getCover($title, $srcLink, $sourceBody);
+                        $previews       = $this->getPreviews($sourceBody);
                         $demo           = "https://themeforest.net" . $sourceBody->first(
                                 'a.btn-icon.live-preview'
                             )->getAttribute('href');
                         $slug           = Str::slug($title);
-                        $arData         = [
+
+                        $arData = [
                             'title'          => $title,
                             'cover'          => $cover,
                             'demo'           => $demo,
@@ -94,7 +98,8 @@ class ParsingService
                             'download_links' => Json::encode($download_links),
                             'is_active'      => true,
                             'description'    => $description,
-                            'slug'           => $slug
+                            'slug'           => $slug,
+                            'previews'       => $previews,
                         ];
 
                         if (SiteTemplate::where([
@@ -203,10 +208,31 @@ class ParsingService
         $cover = sprintf("%s.png", \hash('md5', implode([$title, $srcLink])));
         echo sprintf("Загружаю превью%s", PHP_EOL);
         Storage::put(
-            sprintf("public/themeforest/%s", $cover),
+            sprintf("public/site_templates/%s", $cover),
             file_get_contents($sourceBody->first('.item-preview img')->getAttribute('src'))
         );
         return $cover;
     }
 
+    private function getPreviews(Document $sourceBody): ?array
+    {
+        $previews = null;
+
+        if ($sourceBody->find('.item-preview-image__gallery')) {
+            echo sprintf("Загружаю скрины%s", PHP_EOL);
+            $domPreviews = $sourceBody->find('.item-preview-image__gallery a');
+            $previews    = array_map(function ($previewDOMElement) {
+                $src     = $previewDOMElement->getAttribute('href');
+                $preview = sprintf("%s.png", \hash('md5', implode([$src, Carbon::now()])));
+                Storage::put(
+                    sprintf("public/site_templates/%s", $preview),
+                    file_get_contents($src)
+                );
+
+                return $preview;
+            }, $domPreviews);
+        }
+
+        return $previews;
+    }
 }
