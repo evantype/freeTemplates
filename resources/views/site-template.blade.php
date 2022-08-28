@@ -38,7 +38,7 @@
                     </blockquote>
                 </div>
                 <div class="mt-3">
-                    <p class="card-text"></p>
+                    <site-template-preview></site-template-preview>
                 </div>
                 <div class="d-flex justify-content-between mb-4">
                     <span class="text-muted">Добавлено: {{ $template->updated_at }}</span>
