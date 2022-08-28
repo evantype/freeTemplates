@@ -99,7 +99,7 @@ class ParsingService
                             'is_active'      => true,
                             'description'    => $description,
                             'slug'           => $slug,
-                            'previews'       => $previews,
+                            'previews'       => Json::encode($previews),
                         ];
 
                         if (SiteTemplate::where([
